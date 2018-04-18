@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+<title>Post</title>
+ {% block content %} 
+  {% for obj in index %}
+    <div class="card">
+      <h1 class="title">{{obj.heading}}</h1>
+      <small class="sub_heading">{{obj.sub_heading}}</small> 
+      {% for index in obj.post_set.all %}
+      <h3>{{index.title}}</h3>
+      <h3>{{index.sub_Title}}</h3>
+      <p><strong>Posted By:</strong> {{index.author}}</p>
+      <small>Date Modified: {{index.date_modified }} </small></br>
+       <div class="tags">
+      {% for tag in index.tags.all %}
+          {% if not forloop.last %}
+              <small>{{tag}},</small></br>
+          {% else  %}
+              <small>{{tag}}</small>
+          {% endif %}
+      {% endfor %}
+     </div>
+</div>
+      {% endfor %}
+  {% endfor %}
+ {% endblock %}
+</html> 

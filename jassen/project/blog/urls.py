@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 app_name = 'blog'
 urlpatterns = [
-    path('post/<int:post_id>/', views.PostView.as_view(), name='post'),
+    path('<int:pk>/', views.IndexView.as_view(), name='index'),
+    path('Post/<int:post_id>/', views.PostView.as_view(), name='post'),
 ]
- 
