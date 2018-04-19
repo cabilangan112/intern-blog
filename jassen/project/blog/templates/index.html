@@ -4,19 +4,16 @@
  
 <link rel="stylesheet" type="text/css" href="{% static 'css/card.css' %}" />
 <title>Post list</title>
-
-
 {% block content %} 
-  {% for obj in index %}
-    {% for index in obj.post_set.all %}
+  {% for obj in post %}
       <div class="card">
-      <h1 class="title">{{index.blog.heading}}</h1>
-      <small class="sub_heading">{{index.blog.sub_heading}}</small> 
-      <h3>{{index.title}}</h3>
-      <p><strong>Posted By:</strong> {{index.author}}</p>
-      <small> Posted on: {{ index.date|timesince }} ago</small></p>
+      <h1 class="title">{{obj.blog.heading}}</h1>
+      <small class="sub_heading">{{obj.blog.sub_heading}}</small> 
+      <h3>{{obj.title}}</h3>
+      <p><strong>Posted By:</strong> {{obj.author}}</p>
+      <small> Posted on: {{ obj.date|timesince }} ago</small></p>
       <div class="tags">
-      {% for tag in index.tags.all %}
+      {% for tag in obj.tags.all %}
           {% if not forloop.last %}
             <small>{{tag}},</small>
           {% else  %}
@@ -24,26 +21,22 @@
           {% endif %}
       {% endfor %}
       </div> 
-      <p>{{index.category.title}}</p>
-      <p><li><a href='{% url "blog:post" index.id %}'   role="button">Detail</a></li></p>  
-       </div> 
-     {% endfor %} 
+      <p>{{obj.category.title}}</p>
+      <p><li><a href='{% url "blog:post" obj.id %}'   role="button">Detail</a></li></p>  
+      </div> 
   {% endfor %}
-
   <div class="pagination">
       <span class="step-links">
-          {% if index.has_previous %}
+          {% if post.has_previous %}
               <a href="?page=1">&laquo; first</a>
-              <a href="?page={{ index.previous_page_number }}">previous</a>
+              <a href="?page={{ post.previous_page_number }}">previous</a>
           {% endif %}
-
           <span class="current">
-              Page {{ index.number }} of {{ index.paginator.num_pages }}.
+              Page {{ post.number }} of {{ post.paginator.num_pages }}.
           </span>
-
-          {% if index.has_next %}
-              <a href="?page={{ index.next_page_number }}">next</a>
-              <a href="?page={{ index.paginator.num_pages }}">last &raquo;</a>
+          {% if post.has_next %}
+              <a href="?page={{ post.next_page_number }}">next</a>
+              <a href="?page={{ post.paginator.num_pages }}">last &raquo;</a>
           {% endif %}
       </span>
   </div>
