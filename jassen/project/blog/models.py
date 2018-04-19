@@ -31,8 +31,13 @@ class Post(models.Model):
     tags = models.ManyToManyField("tags",related_name="Tags")
     status = models.CharField(max_length=9, choices=POST_STATUS, blank=True, default=True)
 
+
+
     def __str__(self):
         return '{}'.format(self.title)
+
+    class Meta:
+        ordering = ['-id']
 
 class Category(models.Model):
     title = models.CharField(max_length=150)

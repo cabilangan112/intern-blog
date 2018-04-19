@@ -1,8 +1,8 @@
-{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
  
-<link rel="stylesheet" type="text/css" href="{% static 'css/card.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/cards.css' %}" />
 <title>Post list</title>
 {% block content %} 
   {% for obj in post %}
@@ -23,8 +23,7 @@
       </div> 
       <p>{{obj.category.title}}</p>
       <p><li><a href='{% url "blog:post" obj.id %}'   role="button">Detail</a></li></p>  
-      </div> 
-  {% endfor %}
+
   <div class="pagination">
       <span class="step-links">
           {% if post.has_previous %}
@@ -36,10 +35,11 @@
           </span>
           {% if post.has_next %}
               <a href="?page={{ post.next_page_number }}">next</a>
-              <a href="?page={{ post.paginator.num_pages }}">last &raquo;</a>
+              <a href="?page={{ post.paginator.num_pages }}"><span></span>     last &raquo;</a>
           {% endif %}
       </span>
   </div>
-
+      </div> 
+  {% endfor %}
 {% endblock %}
 

@@ -13,13 +13,12 @@ from django.views import generic, View
 
 class IndexView(View):
     def get(self, request, pk, *args, **kwargs):
-        index = Index.objects.filter(pk=pk)
+        index = Index.objects.get(pk=pk)
         post = Post.objects.filter(blog=pk)
         paginator = Paginator(post, 1)
         page = request.GET.get('page')
         post = paginator.get_page(page)
         context = {
-                'index': index,
                 'post': post,
           }
         return render(request, "index.html", context)
@@ -27,7 +26,7 @@ class IndexView(View):
 
 class PostView(View):
     def get(self, request, post_id, *args, **kwargs):
-        post = Post.objects.filter(pk=post_id).order_by('-date')
+        post = Post.objects.filter(pk=post_id, status__contains='publish').order_by('-date')
         context = {'post':post,}
         return render(request, "Post_list.html", context)
 

@@ -1,0 +1,35 @@
+.card 
+{
+    margin-top: 150px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin-left: 400px;
+    transition: 0.3s;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-bottom:20px;
+}
+
+.img{
+
+    margin: auto; 
+}
+.pagination{
+    padding-top: 20px;
+    text-align:center;
+}
+
+body{
+    /* The image used */
+  background-image: url(img/hero.jpg);
+
+    /* Full height */
+    height: 13%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
