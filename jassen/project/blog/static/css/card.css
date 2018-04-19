@@ -1,16 +1,23 @@
-.card{
-    background-color: white;
+.card 
+{
+	background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 900px;
-    margin:auto;
+    max-width: 300px;
+    margin: left;
     transition: 0.3s;
     border-radius: 10px;
-    padding-left: 20px;
-    padding-bottom:20px;
-}
-.p{
+    text-shadow: 0 .05rem .1rem rgba(15, 2, 2, 0.92);
     font-family: "Times New Roman", Times, serif;
     font-size: 16.5px;
+ 
+    padding-left: 20px;
+    padding-bottom:20px;
+
+}
+
+.img{
+
+
 }
 .title{
     letter-spacing: 3px;
@@ -21,6 +28,7 @@
     transition: .25s;
     text-align: center;
     margin-bottom: 0px;
+
 }
 .sub_heading{
     padding-top: 1px;
@@ -28,24 +36,6 @@
     color: #1C9487;
     text-decoration: none;
     background-color: transparent;
-    float: center;
-    margin: 380px;
+ 
 }
 .tags{
-    display: inline-block;
-    padding: 0.25em 0.4em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0;
-}
-img{
-    width: 870px;
-    height: auto;
-}
-.page{
-    
-}

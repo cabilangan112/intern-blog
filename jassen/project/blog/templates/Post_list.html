@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-<title>Post</title>
+<title>Post Detail</title>
  {% block content %} 
   {% for obj in post %}
     <div class="card">
@@ -24,23 +24,6 @@
               <small>{{tag}}</small>
           {% endif %}
       {% endfor %}
-      </div>
-        <div class="pagination">
-          <span class="step-links">
-            {% if post.has_previous %}
-              <a href="?page=1"> &laquo; first</a>
-              <a href="?page={{ post.previous_page_number }}">previous</a>
-            {% endif %}
-            <span class="current">
-              Page {{ post.number }} of {{ post.paginator.num_pages }}.
-            </span>
-            {% if post.has_next %}
-              <a href="?page={{ post.next_page_number }}">next</a><span></span>
-              <p class="page"> <a href="?page={{ post.paginator.num_pages }}"> last &raquo;</a></p>
-            {% endif %}
-          </span>
-        </div>
-      </div>
     {% endfor %}
   {% endblock %}
 </html> 

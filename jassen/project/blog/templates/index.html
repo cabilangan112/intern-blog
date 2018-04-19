@@ -1,31 +1,52 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-<title>Post</title>
- {% block content %} 
+ 
+<link rel="stylesheet" type="text/css" href="{% static 'css/card.css' %}" />
+<title>Post list</title>
+
+
+{% block content %} 
   {% for obj in index %}
-    <div class="card">
-      <h1 class="title">{{obj.heading}}</h1>
-      <small class="sub_heading">{{obj.sub_heading}}</small> 
-      {% for index in obj.post_set.all %}
+    {% for index in obj.post_set.all %}
+      <div class="card">
+      <h1 class="title">{{index.blog.heading}}</h1>
+      <small class="sub_heading">{{index.blog.sub_heading}}</small> 
       <h3>{{index.title}}</h3>
-      <h3>{{index.sub_Title}}</h3>
       <p><strong>Posted By:</strong> {{index.author}}</p>
-      <small>Date Modified: {{index.date_modified }} </small></br>
-       <div class="tags">
+      <small> Posted on: {{ index.date|timesince }} ago</small></p>
+      <div class="tags">
       {% for tag in index.tags.all %}
           {% if not forloop.last %}
-              <small>{{tag}},</small></br>
+            <small>{{tag}},</small>
           {% else  %}
-              <small>{{tag}}</small>
+            <small>{{tag}}</small>
           {% endif %}
       {% endfor %}
-     </div>
-</div>
-      {% endfor %}
+      </div> 
+      <p>{{index.category.title}}</p>
+      <p><li><a href='{% url "blog:post" index.id %}'   role="button">Detail</a></li></p>  
+       </div> 
+     {% endfor %} 
   {% endfor %}
- {% endblock %}
-</html> 
+
+  <div class="pagination">
+      <span class="step-links">
+          {% if index.has_previous %}
+              <a href="?page=1">&laquo; first</a>
+              <a href="?page={{ index.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ index.number }} of {{ index.paginator.num_pages }}.
+          </span>
+
+          {% if index.has_next %}
+              <a href="?page={{ index.next_page_number }}">next</a>
+              <a href="?page={{ index.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+      </span>
+  </div>
+
+{% endblock %}
+
