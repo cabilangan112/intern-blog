@@ -15,9 +15,9 @@
       <div class="tags">
       {% for tag in obj.tags.all %}
           {% if not forloop.last %}
-            <small>{{tag}},</small>
+              <a href='{% url "blog:tags" tag.id %}'   role="button" > <small>{{tag}},</small></a>
           {% else  %}
-            <small>{{tag}}</small>
+              <a href='{% url "blog:tags" tag.id %}'   role="button" > <small>{{tag}}</small></a>
           {% endif %}
       {% endfor %}
       </div> 

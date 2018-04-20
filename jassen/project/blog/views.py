@@ -14,11 +14,7 @@ from django.views import generic, View
 class IndexView(View):
     def get(self, request, pk, *args, **kwargs):
         index = Index.objects.get(pk=pk)
-        try:
-            post = Post.objects.filter(blog=pk)
-        except Post.ObjectDoesNotExist : 
-            return Http404("Post does not exist")
-
+        post = Post.objects.filter(blog=pk)
         paginator = Paginator(post, 1)
         page = request.GET.get('page')
         post = paginator.get_page(page)
@@ -34,4 +30,9 @@ class PostView(View):
         context = {'post':post,}
         return render(request, "Post_list.html", context)
 
- 
+class TagView(View):
+    def get(self, request, pk, *args, **kwargs):
+        tags = Tags.objects.get(pk=pk)
+        post = Post.objects.all()
+        context = {'post':post,}
+        return render(request, "tags.html", context)

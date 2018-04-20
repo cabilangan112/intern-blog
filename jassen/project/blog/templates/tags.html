@@ -21,7 +21,7 @@
           {% if not forloop.last %}
               <a href='{% url "blog:tags" tag.id %}'   role="button" > <small>{{tag}},</small></a>
           {% else  %}
-              <a href='{% url "blog:tags" tag.id %}'   role="button" > <small>{{tag}},</small></a
+              <a href='{% url "blog:tags" tag.id %}'   role="button" > <small>{{tag}}</small></a>
           {% endif %}
       {% endfor %}
     {% endfor %}
