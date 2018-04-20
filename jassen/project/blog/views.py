@@ -19,9 +19,7 @@ class IndexView(View):
         paginator = Paginator(post, 1)
         page = request.GET.get('page')
         post = paginator.get_page(page)
-        context = {
-                'post': post,
-            }
+        context = {'post': post,}
         return render(request, "index.html", context)
 
 
@@ -41,10 +39,7 @@ class TagView(View):
 class Commentcreate(View):
     def get(self, request):
         comment = Comment.objects.all()
-        context = {
-            'comment' : comment,
-            'form' : Commentform,
-        }
+        context = {'comment' : comment,'form' : Commentform,}
         return render(request, "comment.html", context)
 
     def post(self, request):
@@ -52,11 +47,6 @@ class Commentcreate(View):
         comment = Comment.objects.all()
         if form.is_valid():
             form.save()
-            return redirect('index')
-            
-        context = {
-            'form' : form,
-            'comment' : comment,
-        }
-        
+            return redirect('index')            
+        context = {'form' : form,'comment' : comment,}        
         return render(request, "comment.html", context)
