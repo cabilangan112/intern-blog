@@ -30,6 +30,7 @@ class Post(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     tags = models.ManyToManyField("tags",related_name="Tags")
     status = models.CharField(max_length=9, choices=POST_STATUS, blank=True, default=True)
+    Comment = models.ManyToManyField("comment",related_name="Comment")
     
 
 
@@ -59,6 +60,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return '{}'.format(self.text)
-from django.db import models
-
-# Create your models here.

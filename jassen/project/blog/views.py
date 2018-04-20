@@ -39,8 +39,7 @@ class TagView(View):
         return render(request, "tags.html", context)
 
 class Commentcreate(View):
-    def get(self, pk, request):
-        post = Post.objects.filter(blog=pk)
+    def get(self, request):
         comment = Comment.objects.all()
         context = {
             'comment' : comment,
@@ -53,7 +52,7 @@ class Commentcreate(View):
         comment = Comment.objects.all()
         if form.is_valid():
             form.save()
-            return redirect('')
+            return redirect('index')
             
         context = {
             'form' : form,
