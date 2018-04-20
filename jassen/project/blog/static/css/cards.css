@@ -9,6 +9,9 @@
     border-radius: 10px;
     padding-left: 20px;
     padding-bottom:20px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16.5px;
+
 }
 
 .img{
@@ -22,7 +25,7 @@
 
 body{
     /* The image used */
-  background-image: url(img/hero.jpg);
+  background-image: url(img/jass.jpg);
 
     /* Full height */
     height: 13%; 
@@ -32,4 +35,30 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.title{
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 400;
+    line-height: 1.4em;
+    transition: .25s;
+    text-align: center;
+    margin-bottom: 0px;
+}
+.sub_heading{
+    padding-top: 1px;
+    text-align: center;
+    color: #1C9487;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 16.5px;
+    font-weight: 400;
+    margin-left: 190px;
 
+}
+.li{
+    
+   text-align: right;
+
+
+}style="margin-right:

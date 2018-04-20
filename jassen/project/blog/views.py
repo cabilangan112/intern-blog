@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import TemplateView
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import get_user_model
@@ -14,13 +14,17 @@ from django.views import generic, View
 class IndexView(View):
     def get(self, request, pk, *args, **kwargs):
         index = Index.objects.get(pk=pk)
-        post = Post.objects.filter(blog=pk)
+        try:
+            post = Post.objects.filter(blog=pk)
+        except Post.ObjectDoesNotExist : 
+            return Http404("Post does not exist")
+
         paginator = Paginator(post, 1)
         page = request.GET.get('page')
         post = paginator.get_page(page)
         context = {
                 'post': post,
-          }
+            }
         return render(request, "index.html", context)
 
 
@@ -30,5 +34,4 @@ class PostView(View):
         context = {'post':post,}
         return render(request, "Post_list.html", context)
 
-
-
+ 
