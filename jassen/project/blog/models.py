@@ -30,6 +30,7 @@ class Post(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     tags = models.ManyToManyField("tags",related_name="Tags")
     status = models.CharField(max_length=9, choices=POST_STATUS, blank=True, default=True)
+    
 
 
 
@@ -52,6 +53,7 @@ class Tags(models.Model):
         return '{}'.format(self.title)
 
 class Comment(models.Model):
+    author = models.CharField(max_length=120)
     text = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
